@@ -1,0 +1,13 @@
+--type-add=objc=.pch
+--type-add=ruby=.haml
+--type-add=css=.sass
+--type-add=ruby=.erb
+--type-add=html=.html.erb
+--type-set=xcode=.pbxproj,.pbxuser,.perspective3
+--type-set=rage=.rl
+--type-set=nib=.xib
+--type-set=plist=.plist
+--type-set=tmstuff=.tmproj,.tm_build_errors
+--nonib
+--notmstuff
+--noxcode
