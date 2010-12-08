@@ -1,3 +1,5 @@
 #! /bin/bash
 
-export LC_ALL=es_ES.UTF-8
+if [ $(uname) = 'Darwin' ]; then
+  export LC_ALL=es_ES.UTF-8
+fi
