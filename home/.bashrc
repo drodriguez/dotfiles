@@ -5,9 +5,9 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 
 alias reload='source ~/.bash_profile'
 
-source '.my-bash/theme/colors.bash'
-source '.my-bash/theme/base.bash'
-source '.my-bash/theme/theme.bash'
+source '~/.my-bash/theme/colors.bash'
+source '~/.my-bash/theme/base.bash'
+source '~/.my-bash/theme/theme.bash'
 
 # Load the files inside .my-bash
 for config_dir in lib aliases completion plugins functions
