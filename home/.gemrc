@@ -3,8 +3,9 @@ backtrace: false
 verbose: true
 bulk_threshold: 1000
 benchmark: false
-sources: 
+sources:
 - http://rubygems.org/
 - http://gems.github.com
-gem: --no-ri
+install: --no-ri
+update: --no-ri
 
