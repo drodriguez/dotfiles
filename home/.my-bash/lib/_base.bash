@@ -6,6 +6,7 @@ export GIT_EDITOR="/usr/bin/nano -w"
 
 # Pager
 export PAGER=most
+export GIT_PAGER=less
 
 # Don't check mail on login
 unset MAILCHECK
