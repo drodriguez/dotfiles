@@ -1,6 +1,14 @@
 .DS_Store
-*~
+Icon
+
+# Thumbnails
 ._*
+
+# Spotlight in external drives
+.Spotlight-V100
+.Trashes
+
+*~
 .svn
 .hg
 .redcar/
