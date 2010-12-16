@@ -4,11 +4,8 @@
 shopt -s histappend
 
 # history handling
-#
-# Erase duplicates
-# Bash History
-export HISTCONTROL=ignoreboth
-export HISTCONTROL=erasedups
+# Erase duplicates, ignore lines with spaces at start, ignore duplicates
+export HISTCONTROL=ignoreboth:erasedups
 
 # resize history size
 export HISTSIZE=5000
