@@ -7,4 +7,5 @@ if [ $(uname) = "Darwin" ]; then
   alias firefox="open -a '/Applications/Firefox.app'"
   alias chrome="open -a '/Applications/Google Chrome.app'"
   alias f="open -a Finder "
+  alias murky="open -a Murky "
 fi
