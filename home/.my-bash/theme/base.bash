@@ -21,7 +21,7 @@ RVM_THEME_PROMPT_SUFFIX='|'
 
 function scm {
   if [[ -n $(git rev-parse --git-dir 2>/dev/null) ]]; then SCM=$GIT
-  elif [[ -d .hg ]]; then SCM=$HG
+  elif [[ -n $(hg root 2>/dev/null) ]]; then SCM=$HG
   elif [[ -d .svn ]]; then SCM=$SVN
   else SCM='NONE'
   fi
@@ -67,6 +67,10 @@ function svn_prompt_info {
 
   [[ -z $ref ]] && return
   echo -e "$prefix$ref$state$suffix"
+}
+
+function hg_prompt_info {
+    hg prompt --angle-brackets " |<branch><status|modified|unknown><update>< mq: <patch>>< a:<patch|applied|quiet>>< u:<patch|unapplied|quiet>>|" 2>/dev/null
 }
 
 function rvm_version_prompt {
