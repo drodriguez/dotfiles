@@ -11,3 +11,5 @@
 --nonib
 --notmstuff
 --noxcode
+--ignore-dir=.bad
+
