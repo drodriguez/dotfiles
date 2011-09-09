@@ -1,0 +1,21 @@
+# Expand save panel by default
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
+
+# Expand print panel by default
+defaults write -g PMPrintingExpandedStateForPrint -bool true
+
+# Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeDebugMenu -bool true
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
+echo "0x08000100:0" > ~/.CFUserTextEncoding
+
