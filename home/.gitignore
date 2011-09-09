@@ -8,6 +8,10 @@ Icon
 .Spotlight-V100
 .Trashes
 
+# Xcode 3 project files
+*.mode1v3
+*.pbxuser
+
 *~
 .svn
 .hg

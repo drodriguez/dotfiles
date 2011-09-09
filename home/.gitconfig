@@ -21,4 +21,9 @@
 	user = drodriguez
 [push]
 	default = tracking
+[diff]
+	renames = copies
+	mnemonicprefix = true
+[rerere]
+	enabled = true
 
