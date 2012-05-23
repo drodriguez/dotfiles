@@ -4,7 +4,8 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/drodriguez/.gitignore_global
+	trustctime = false
 [alias]
 	cv = commit -v
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -17,6 +18,7 @@
 	br = branch
 	co = checkout
 	df = diff
+	pr = pull --rebase
 [github]
 	user = drodriguez
 [push]
@@ -27,3 +29,9 @@
 [rerere]
 	enabled = true
 
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

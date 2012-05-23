@@ -18,6 +18,7 @@ export GREP_COLOR='1;33'
 # colored ls
 export LSCOLORS='Gxfxcxdxdxegedabagacad'
 
+export PATH=/usr/local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib/
 export MAN_PATH=$MAN_PATH:/usr/local/share/man/
 

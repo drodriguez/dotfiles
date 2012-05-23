@@ -1,0 +1,50 @@
+[alias]
+ap = crecord
+describe = log -r . --template '{latesttag}-{latesttagdistance}{modified}-{node|short}\n'
+
+[diff]
+git = True
+
+[merge-tools]
+# emacs.args = -q --eval "(ediff-merge-with-ancestor \"$local\" \"$other\" \"$base\" nil \"$output\")"
+#filemerge.executable = opendiff-w
+#filemerge.args = $local $other -ancestor $base -merge $output
+#filemerge.gui = True
+kdiff3.args = $base $local $other -o $output
+
+sourcetreemerge.gui=False
+sourcetreebulkmerge.gui=False
+sourcetreemerge.binary=False
+sourcetreebulkmerge.executable=/Applications/SourceTree.app/Contents/Resources/hg-merge.sh
+sourcetreemerge.args=$local $other -ancestor $base -merge $output
+sourcetreemerge.checkconflicts=True
+sourcetreemerge.premerge=True
+sourcetreemerge.executable=/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh
+sourcetreebulkmerge.premerge=False
+sourcetreebulkmerge.binary=True
+[pager]
+pager = LESS='FSRX' less
+
+[ui]
+username=Daniel Rodríguez Troitiño <drodriguez@tuenti.com>
+# merge = emacs
+# merge = vim
+
+ignore=/Users/drodriguez/.hgignore_global
+[extensions]
+# attic = ~/.hgext/hgattic
+bookmarks =
+color =
+crecord = ~/.hgext/crecord/crecord
+histedit = ~/.hgext/histedit/hg_histedit.py
+graphlog = 
+mq =
+pager =
+prompt = ~/.hgext/hg-prompt/prompt.py
+record =
+rebase =
+transplant =
+
+[extdiff]
+cmd.sourcetreediff=opendiff
+opts.sourcetreediff=
