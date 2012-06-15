@@ -22,8 +22,13 @@ sourcetreemerge.premerge=True
 sourcetreemerge.executable=/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh
 sourcetreebulkmerge.premerge=False
 sourcetreebulkmerge.binary=True
+
 [pager]
 pager = LESS='FSRX' less
+ignore = version, update, server, record
+
+[progress]
+delay = 1.5
 
 [ui]
 username=Daniel Rodríguez Troitiño <drodriguez@tuenti.com>
@@ -37,9 +42,10 @@ bookmarks =
 color =
 crecord = ~/.hgext/crecord/crecord
 histedit = ~/.hgext/histedit/hg_histedit.py
-graphlog = 
+graphlog =
 mq =
 pager =
+progress =
 prompt = ~/.hgext/hg-prompt/prompt.py
 record =
 rebase =
