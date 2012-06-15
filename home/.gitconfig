@@ -14,7 +14,7 @@
 	ct = checkout --track
 	ap = add -p
 	ci = commit
-	st = status
+	st = status -sb
 	br = branch
 	co = checkout
 	df = diff
