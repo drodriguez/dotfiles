@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = /Users/drodriguez/.gitignore_global
+	excludesfile = ~/.gitignore
 	trustctime = false
 [alias]
 	cv = commit -v
@@ -14,11 +14,15 @@
 	ct = checkout --track
 	ap = add -p
 	ci = commit
-	st = status
+	st = status -sb
 	br = branch
 	co = checkout
 	df = diff
 	pr = pull --rebase
+	amend = commit --amend -C HEAD
+	undo = reset --soft HEAD^
+	count = shortlog -sn
+	credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
 [github]
 	user = drodriguez
 [push]
