@@ -62,13 +62,13 @@ _hg_cmd()
 _hg_commands()
 {
     local commands
-    commands="$(_hg_cmd debugcomplete "$cur")" || commands=""
+    commands="$(HGPLAINEXCEPT=alias _hg_cmd debugcomplete "$cur")" || commands=""
     COMPREPLY=(${COMPREPLY[@]:-} $(compgen -W '$commands' -- "$cur"))
 }
 
 _hg_paths()
 {
-    local paths="$(_hg_cmd paths | sed -e 's/ = .*$//')"
+    local paths="$(_hg_cmd paths -q)"
     COMPREPLY=(${COMPREPLY[@]:-} $(compgen -W '$paths' -- "$cur"))
 }
 
@@ -84,6 +84,7 @@ _hg_status()
 {
     local files="$(_hg_cmd status -n$1 .)"
     local IFS=$'\n'
+    compopt -o filenames 2>/dev/null
     COMPREPLY=(${COMPREPLY[@]:-} $(compgen -W '$files' -- "$cur"))
 }
 
