@@ -1,6 +1,7 @@
 [alias]
 ap = crecord
 describe = log -r . --template '{latesttag}-{latesttagdistance}{modified}-{node|short}\n'
+lga = glog --style=$HOME/.hgext/map-cmdline.lg
 
 [diff]
 git = True
@@ -25,6 +26,7 @@ sourcetreebulkmerge.binary=True
 
 [pager]
 pager = LESS='FSRX' less
+attend = cat, diff, glog, log, incoming, outgoing, lg, show, lga
 ignore = version, update, server, record
 
 [progress]
@@ -36,6 +38,7 @@ username=Daniel Rodríguez Troitiño <drodriguez@tuenti.com>
 # merge = vim
 
 ignore=/Users/drodriguez/.hgignore_global
+
 [extensions]
 # attic = ~/.hgext/hgattic
 bookmarks =
@@ -47,8 +50,11 @@ mq =
 pager =
 progress =
 prompt = ~/.hgext/hg-prompt/prompt.py
+purge =
 record =
 rebase =
+remotebranches = ~/.hgext/hg-remotebranches/hg_remotebranches.py
+shelve = ~/.hgext/hgshelve/hgshelve.py
 transplant =
 
 [extdiff]
