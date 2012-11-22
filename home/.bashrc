@@ -21,4 +21,8 @@ done
 unset config_file
 unset config_dir
 
+export PATH=/usr/local/bin:$PATH
 export PS1=$PROMPT
+
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

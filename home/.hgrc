@@ -37,7 +37,7 @@ username=Daniel Rodríguez Troitiño <drodriguez@tuenti.com>
 # merge = emacs
 # merge = vim
 
-ignore=/Users/drodriguez/.hgignore_global
+ignore=~/.hgignore_global
 
 [extensions]
 # attic = ~/.hgext/hgattic

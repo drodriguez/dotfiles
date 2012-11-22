@@ -7,22 +7,42 @@
 	excludesfile = ~/.gitignore
 	trustctime = false
 [alias]
-	cv = commit -v
+  ci = commit
+  cv = commit -v
+  amend = commit --amend -C HEAD
+
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lp = log -p
-	cb = checkout -b
+  ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
+  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --numstat
+
+  cb = checkout -b
 	ct = checkout --track
-	ap = add -p
-	ci = commit
+
+  ap = add -p
+
 	st = status -sb
-	br = branch
-	co = checkout
-	df = diff
-	pr = pull --rebase
-	amend = commit --amend -C HEAD
+
+  br = branch
+
+  co = checkout
+
+  df = diff
+
+  pr = pull --rebase
+  prd = "!_() { git stash save && git pull --rebase && git stash pop; }; _"
+
 	undo = reset --soft HEAD^
-	count = shortlog -sn
-	credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
+
+  count = shortlog -sn
+
+  credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
+
+  sl = stash list
+  ss = stash save
+  sp = stash pop
+  sa = stash apply
+
 [github]
 	user = drodriguez
 [push]
@@ -39,3 +59,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[credential]
+	helper = osxkeychain

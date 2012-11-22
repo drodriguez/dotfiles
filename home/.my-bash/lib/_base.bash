@@ -20,7 +20,7 @@ export LSCOLORS='Gxfxcxdxdxegedabagacad'
 
 export PATH=/usr/local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib/
-export MAN_PATH=$MAN_PATH:/usr/local/share/man/
+export MAN_PATH=/usr/local/share/man/:$MAN_PATH
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
