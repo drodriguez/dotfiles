@@ -1,5 +1,5 @@
 #! /bin/bash
 
 function mategem {
-  gem edit $1
+  gem edit -e mate $1
 }

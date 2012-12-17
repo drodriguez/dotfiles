@@ -1,3 +1,11 @@
+[auth]
+push.prefix = push.code.tuenti.int
+push.username = drodriguez
+push.schemes = http
+pull.prefix = pull.code.tuenti.int
+pull.username = drodriguez
+pull.schemes = http
+
 [alias]
 ap = crecord
 describe = log -r . --template '{latesttag}-{latesttagdistance}{modified}-{node|short}\n'
@@ -46,6 +54,7 @@ color =
 crecord = ~/.hgext/crecord/crecord
 histedit = ~/.hgext/histedit/hg_histedit.py
 graphlog =
+mercurial_keyring =
 mq =
 pager =
 progress =
@@ -54,6 +63,7 @@ purge =
 record =
 rebase =
 remotebranches = ~/.hgext/hg-remotebranches/hg_remotebranches.py
+repo-push = ~/.hgext/repo-push/repo-push.py
 shelve = ~/.hgext/hgshelve/hgshelve.py
 transplant =
 
