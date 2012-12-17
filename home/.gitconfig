@@ -6,58 +6,64 @@
 [core]
 	excludesfile = ~/.gitignore
 	trustctime = false
+	pager = less -x1,5
 [alias]
-  ci = commit
-  cv = commit -v
-  amend = commit --amend -C HEAD
+	ci = commit
+	cv = commit -v
+	amend = commit --amend -C HEAD
 
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lp = log -p
-  ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
-  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --numstat
+	ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
+	ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --numstat
 
-  cb = checkout -b
+	cb = checkout -b
 	ct = checkout --track
 
-  ap = add -p
+	ap = add -p
 
 	st = status -sb
 
-  br = branch
+	br = branch
 
-  co = checkout
+	co = checkout
 
-  df = diff
+	df = diff
 
-  pr = pull --rebase
-  prd = "!_() { git stash save && git pull --rebase && git stash pop; }; _"
+	pr = pull --rebase
+	prd = "!_() { git stash save && git pull --rebase && git stash pop; }; _"
 
 	undo = reset --soft HEAD^
 
-  count = shortlog -sn
+	count = shortlog -sn
 
-  credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
+	credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
 
-  sl = stash list
-  ss = stash save
-  sp = stash pop
-  sa = stash apply
+	sl = stash list
+	ss = stash save
+	sp = stash pop
+	sa = stash apply
 
 [github]
 	user = drodriguez
 [push]
-	default = tracking
+	default = current
 [diff]
 	renames = copies
 	mnemonicprefix = true
 [rerere]
 	enabled = true
-
+[credential]
+	helper = osxkeychain
+[merge]
+	defaultToUpstream = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[credential]
-	helper = osxkeychain
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot

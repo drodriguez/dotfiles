@@ -685,18 +685,16 @@ class CursesChunkSelector(object):
         if hunk.folded and not ignoreFolding:
             return outStr
 
-        indentNumChars = self.hunkLineIndentNumChars-1
         # a bit superfluous, but to avoid hard-coding indent amount
         checkBox = self.getStatusPrefixString(hunk)
         for line in hunk.after:
-            lineStr = " "*(indentNumChars + len(checkBox)) + line
+            lineStr = " "*(self.hunkLineIndentNumChars + len(checkBox)) + line
             outStr += self.printString(self.chunkpad, lineStr, toWin=toWin)
 
         return outStr
 
     def printHunkChangedLine(self, hunkLine, selected=False, toWin=True):
         outStr = ""
-        indentNumChars = self.hunkLineIndentNumChars
         checkBox = self.getStatusPrefixString(hunkLine)
 
         lineStr = hunkLine.prettyStr().strip("\n")
@@ -711,7 +709,7 @@ class CursesChunkSelector(object):
         elif lineStr.startswith("\\"):
             colorPair = self.getColorPair(name="normal")
 
-        linePrefix = " "*indentNumChars + checkBox
+        linePrefix = " "*self.hunkLineIndentNumChars + checkBox
         outStr += self.printString(self.chunkpad, linePrefix, toWin=toWin,
                                    align=False) # add uncolored checkbox/indent
         outStr += self.printString(self.chunkpad, lineStr, pair=colorPair,
@@ -898,6 +896,7 @@ The following are valid keystrokes:
                       f : fold / unfold item, hiding/revealing its children
                       F : fold / unfold parent item and all of its ancestors
                       m : edit / resume editing the commit message
+                      a : toggle amend mode (hg rev >= 2.2)
                       c : commit selected changes
                       r : review/edit and commit selected changes
                       q : quit without committing (no changes will be made)
@@ -920,13 +919,6 @@ The following are valid keystrokes:
 
     def commitMessageWindow(self):
         "Create a temporary commit message editing window on the screen."
-        if self.commentText == "":
-            self.commentText = textwrap.dedent("""
-            HG: Enter/resume commit message.  Lines beginning with 'HG:' are removed.
-            HG: You can save this message, and edit it again later before committing.
-            HG: After exiting the editor, you will return to the crecord patch view.
-            HG: --
-            HG: user: %s""" % self.ui.username())
             
         curses.raw()
         curses.def_prog_mode()
@@ -935,7 +927,26 @@ The following are valid keystrokes:
         curses.cbreak()
         self.stdscr.refresh()
         self.stdscr.keypad(1) # allow arrow-keys to continue to function
-        
+
+    def confirmationWindow(self, windowText):
+        "Display an informational window, then wait for and return a keypress."
+
+        confirmWin = curses.newwin(self.yScreenSize, 0, 0, 0)
+        try:
+            lines = windowText.split("\n")
+            for line in lines:
+                self.printString(confirmWin, line, pairName="selected")
+        except curses.error:
+            pass
+        self.stdscr.refresh()
+        confirmWin.refresh()
+        try:
+            response = chr(self.stdscr.getch())
+        except ValueError:
+            response = None
+
+        return response
+
     def confirmCommit(self, review=False):
         "Ask for 'Y' to be pressed to confirm commit. Return True if confirmed."
         if review:
@@ -953,23 +964,44 @@ Are you sure you want to review/edit and commit the selected changes [yN]? """)
             confirmText = (
                 "Are you sure you want to commit the selected changes [yN]? ")
 
-        confirmWin = curses.newwin(self.yScreenSize, 0, 0, 0)
-        try:
-            lines = confirmText.split("\n")
-            for line in lines:
-                self.printString(confirmWin, line, pairName="selected")
-        except curses.error:
-            pass
-        self.stdscr.refresh()
-        confirmWin.refresh()
-        try:
-            response = chr(self.stdscr.getch())
-        except ValueError:
+        response = self.confirmationWindow(confirmText)
+        if response is None:
             response = "n"
         if response.lower().startswith("y"):
             return True
         else:
             return False
+
+    def toggleAmend(self, opts):
+        """Toggle the amend flag.
+
+        When the amend flag is set, a commit will modify the most recently
+        committed changeset, instead of creating a new changeset.  Otherwise, a
+        new changeset will be created (the normal commit behavior).
+
+        """
+        try:
+            ver = float(util.version()[:3])
+        except:
+            # not sure if needed: for earlier versions that may not have
+            # util.vesrion()...
+            ver = 1
+        if ver < 2.19:
+            msg = ("The amend option is unavailable with hg versions < 2.2\n\n"
+                   "Press any key to continue.")
+        elif opts.get('amend') is None:
+            opts['amend'] = True
+            msg = ("Amend option is turned on -- commiting the currently "
+                   "selected changes will not create a new changeset, but "
+                   "instead update the most recently committed changeset.\n\n"
+                   "Press any key to continue.")
+        elif opts.get('amend') is True:
+            opts['amend'] = None
+            msg = ("Amend option is turned off -- commiting the currently "
+                   "selected changes will create a new changeset.\n\n"
+                   "Press any key to continue.")
+
+        self.confirmationWindow(msg)
 
     def main(self, stdscr, opts):
         """
@@ -1017,6 +1049,18 @@ Are you sure you want to review/edit and commit the selected changes [yN]? """)
         except KeyError:
             pass
 
+        if opts['user'] != '':
+            # make it accessible by self.ui.username()
+            self.ui.setconfig("ui", "username", opts['user'])
+
+        self.commentText += textwrap.dedent("""
+        
+        HG: Enter/resume commit message.  Lines beginning with 'HG:' are removed.
+        HG: You can save this message, and edit it again later before committing.
+        HG: After exiting the editor, you will return to the crecord patch view.
+        HG: --
+        HG: user: %s""" % self.ui.username())
+
         while True:
             self.updateScreen()
             try:
@@ -1040,6 +1084,8 @@ Are you sure you want to review/edit and commit the selected changes [yN]? """)
                 self.leftArrowShiftEvent()
             elif keyPressed in ["q"]:
                 raise util.Abort(_('user quit'))
+            elif keyPressed in ['a']:
+                self.toggleAmend(opts)
             elif keyPressed in ["c"]:
                 if self.confirmCommit():
                     break
@@ -1061,4 +1107,10 @@ Are you sure you want to review/edit and commit the selected changes [yN]? """)
                 self.commitMessageWindow()
 
         if self.commentText != "":
-            opts['message'] = self.commentText
+            # strip out all lines beginning with 'HG:'
+            self.commentText = re.sub("(?m)^HG:.*(\n|$)", "", self.commentText)
+            # remove lines with whitespace (for test below)
+            whitespaceRemoved = re.sub("(?m)^\s.*(\n|$)", "", self.commentText)
+            # if there's anything left...
+            if whitespaceRemoved != "":
+                opts['message'] = self.commentText
