@@ -25,3 +25,10 @@ export MAN_PATH=/usr/local/share/man/:$MAN_PATH
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# Case-insensitive globbing
+shopt -s nocaseglob
+
+# Autocorrect typos in path names when using cd
+shopt -s cdspell
+

@@ -1,2 +1,25 @@
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+# Make tab autocomplet regardless of filename case
+set completion-ignore-case on
+
+# List all matches in case multiple possible completions are possible
+set show-all-if-ambiguous on
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+
+# Do not autocomple hidden files unless the pattern explicitly begins with a dot
+set match-hidden-files off
+
+# Show extra file information when completing, like ls -F does
+set show-visible-stats on
+
+# Allow UTF-8 input and output
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# Use Alt/Meta + Delete to delete the preceding word
+"\e[3;3~": kill-word
