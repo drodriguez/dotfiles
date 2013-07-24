@@ -1,8 +1,5 @@
 # Many ideas and code lifted from https://github.com/revans/bash-it
 
-# Load RVM first
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-
 alias reload='source ~/.bash_profile'
 
 source ~/.my-bash/theme/colors.bash
@@ -21,8 +18,7 @@ done
 unset config_file
 unset config_dir
 
-export PATH=/usr/local/bin:$PATH
 export PS1=$PROMPT
 
-
+if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

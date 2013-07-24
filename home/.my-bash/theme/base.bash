@@ -21,7 +21,7 @@ RVM_THEME_PROMPT_SUFFIX='|'
 
 function scm {
   if [[ -n $(git rev-parse --git-dir 2>/dev/null) ]]; then SCM=$GIT
-  elif [[ -n $(hg root 2>/dev/null) ]]; then SCM=$HG
+  # elif [[ -n $(hg root 2>/dev/null) ]]; then SCM=$HG
   elif [[ -d .svn ]]; then SCM=$SVN
   else SCM='NONE'
   fi
