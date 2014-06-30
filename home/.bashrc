@@ -19,6 +19,3 @@ unset config_file
 unset config_dir
 
 export PS1=$PROMPT
-
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

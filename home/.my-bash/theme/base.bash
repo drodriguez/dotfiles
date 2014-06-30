@@ -72,10 +72,3 @@ function svn_prompt_info {
 function hg_prompt_info {
     hg prompt --angle-brackets " |<branch><status|modified|unknown><update>< mq: <patch>>< a:<patch|applied|quiet>>< u:<patch|unapplied|quiet>>|" 2>/dev/null
 }
-
-function rvm_version_prompt {
-  if which rvm &> /dev/null; then
-    rvm=$(rvm tools identifier) || return
-    echo -e "$RVM_THEME_PROMPT_PREFIX$rvm$RVM_THEME_PROMPT_SUFFIX"
-  fi
-}

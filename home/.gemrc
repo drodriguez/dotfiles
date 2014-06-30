@@ -8,4 +8,5 @@ sources:
 - http://gems.github.com
 install: --no-ri
 update: --no-ri
+gem: --user-install
 

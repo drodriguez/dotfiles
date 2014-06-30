@@ -6,4 +6,4 @@
 # SCM_THEME_PROMPT_SUFFIX="${green}|"
 
 
-PROMPT="\[${bold_blue}\]\$(scm_char)\[${green}\]\$(scm_prompt_info)\[${blue}\]\$(rvm_version_prompt)\[${reset_color}\] \h:\W \u\$ "
+PROMPT="\[${bold_blue}\]\$(scm_char)\[${green}\]\$(scm_prompt_info)\[${reset_color}\] \h:\W \u\$ "
