@@ -1,0 +1,78 @@
+{
+  "global" : {
+    "check_for_updates_on_startup" : true,
+    "show_in_menu_bar" : true,
+    "show_profile_name_in_menu_bar" : false
+  },
+  "profiles" : [
+    {
+      "virtual_hid_keyboard" : {
+        "caps_lock_delay_milliseconds" : 0,
+        "keyboard_type" : "ansi"
+      },
+      "selected" : false,
+      "devices" : [
+        {
+          "identifiers" : {
+            "product_id" : 1957,
+            "is_pointing_device" : false,
+            "is_keyboard" : true,
+            "vendor_id" : 1118
+          },
+          "disable_built_in_keyboard_if_exists" : false,
+          "ignore" : false
+        }
+      ],
+      "name" : "With Microsoft Sculp Keyboard",
+      "simple_modifications" : {
+        "left_command" : "left_option",
+        "right_option" : "right_command",
+        "caps_lock" : "f18",
+        "right_command" : "right_option",
+        "left_option" : "left_command"
+      },
+      "fn_function_keys" : {
+        "f12" : "volume_increment",
+        "f9" : "play_or_pause",
+        "f5" : "illumination_decrement",
+        "f10" : "mute",
+        "f1" : "display_brightness_decrement",
+        "f6" : "illumination_increment",
+        "f2" : "display_brightness_increment",
+        "f7" : "f7",
+        "f11" : "volume_decrement",
+        "f3" : "mission_control",
+        "f8" : "f8",
+        "f4" : "launchpad"
+      }
+    },
+    {
+      "virtual_hid_keyboard" : {
+        "caps_lock_delay_milliseconds" : 0,
+        "keyboard_type" : "ansi"
+      },
+      "selected" : true,
+      "devices" : [
+
+      ],
+      "name" : "With Internal Keyboard",
+      "simple_modifications" : {
+        "caps_lock" : "f18"
+      },
+      "fn_function_keys" : {
+        "f12" : "volume_increment",
+        "f9" : "fastforward",
+        "f5" : "illumination_decrement",
+        "f10" : "mute",
+        "f1" : "display_brightness_decrement",
+        "f6" : "illumination_increment",
+        "f2" : "display_brightness_increment",
+        "f7" : "rewind",
+        "f11" : "volume_decrement",
+        "f3" : "mission_control",
+        "f8" : "play_or_pause",
+        "f4" : "launchpad"
+      }
+    }
+  ]
+}

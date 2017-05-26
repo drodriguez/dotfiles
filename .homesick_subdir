@@ -1,1 +1,8 @@
 .my-bash/lib
+.hammerspoon
+.config/karabiner
+.config/fish
+.config/fish/conf.d
+.config/fish/functions
+.config/omf
+.config/omf/themes/mytheme

@@ -14,7 +14,7 @@ set mark-symlinked-directories on
 set match-hidden-files off
 
 # Show extra file information when completing, like ls -F does
-set show-visible-stats on
+set visible-stats on
 
 # Allow UTF-8 input and output
 set input-meta on

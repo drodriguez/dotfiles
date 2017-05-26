@@ -6,7 +6,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	trustctime = false
-	pager = less -x1,5
+	pager = diff-so-fancy | less --tabs 4 -RFX
 [pager]
 	show = less -x4
 [alias]
@@ -35,6 +35,8 @@
 	pr = pull --rebase
 	prd = "!_() { git stash save && git pull --rebase && git stash pop; }; _"
 
+	ps = push --set-upstream
+
 	undo = reset --soft HEAD^
 
 	count = shortlog -sn
@@ -46,6 +48,7 @@
 	sp = stash pop
 	sa = stash apply
 
+	sup = submodule update --init --recursive
 [github]
 	user = drodriguez
 [merge]
@@ -55,6 +58,7 @@
 [diff]
 	renames = copies
 	mnemonicprefix = true
+	compactionHeuristic = true
 [rerere]
 	enabled = true
 [credential]
@@ -71,3 +75,8 @@
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[color "diff"]
+	old = red strike
+	new = green italic
+[interactive]
+	diffFilter = diff-so-fancy --patch
