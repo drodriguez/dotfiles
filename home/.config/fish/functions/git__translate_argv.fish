@@ -14,7 +14,7 @@ function git__translate_argv
         echo "$subarg"
       end
     else
-      echo $arg
+      printf "%s\n" $arg
     end
   end
 end

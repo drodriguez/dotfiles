@@ -1,29 +1,25 @@
 {
   "global" : {
+    "show_profile_name_in_menu_bar" : false,
     "check_for_updates_on_startup" : true,
-    "show_in_menu_bar" : true,
-    "show_profile_name_in_menu_bar" : false
+    "show_in_menu_bar" : true
   },
   "profiles" : [
     {
-      "virtual_hid_keyboard" : {
-        "caps_lock_delay_milliseconds" : 0,
-        "keyboard_type" : "ansi"
-      },
-      "selected" : false,
+      "selected" : true,
+      "name" : "With Microsoft Sculp Keyboard",
       "devices" : [
         {
           "identifiers" : {
             "product_id" : 1957,
-            "is_pointing_device" : false,
+            "vendor_id" : 1118,
             "is_keyboard" : true,
-            "vendor_id" : 1118
+            "is_pointing_device" : false
           },
           "disable_built_in_keyboard_if_exists" : false,
           "ignore" : false
         }
       ],
-      "name" : "With Microsoft Sculp Keyboard",
       "simple_modifications" : {
         "left_command" : "left_option",
         "right_option" : "right_command",
@@ -44,18 +40,18 @@
         "f3" : "mission_control",
         "f8" : "f8",
         "f4" : "launchpad"
-      }
-    },
-    {
+      },
       "virtual_hid_keyboard" : {
         "caps_lock_delay_milliseconds" : 0,
         "keyboard_type" : "ansi"
-      },
-      "selected" : true,
+      }
+    },
+    {
+      "selected" : false,
+      "name" : "With Internal Keyboard",
       "devices" : [
 
       ],
-      "name" : "With Internal Keyboard",
       "simple_modifications" : {
         "caps_lock" : "f18"
       },
@@ -72,6 +68,10 @@
         "f3" : "mission_control",
         "f8" : "play_or_pause",
         "f4" : "launchpad"
+      },
+      "virtual_hid_keyboard" : {
+        "caps_lock_delay_milliseconds" : 0,
+        "keyboard_type" : "ansi"
       }
     }
   ]

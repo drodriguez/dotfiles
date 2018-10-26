@@ -19,7 +19,7 @@ function rc {
   rails_command console "$@"
 }
 
-function rg {
+function rgen {
   rails_command generate "$@"
 }
 

@@ -2,6 +2,18 @@
 -- A global variable for the Hyper Mode
 k = hs.hotkey.modal.new({}, "F17")
 
+-- HYPER+L: lock the screen
+k:bind({}, "l", function()
+  hs.caffeinate.startScreensaver()
+  k.triggered = true
+end)
+
+-- HYPER+V: Cmd+Alt+Shift+Ctrl+v
+k:bind({}, "v", nil, function()
+  hs.eventtap.keyStroke({'cmd', 'alt', 'shift', 'ctrl'}, 'v')
+  k.triggered = true
+end)
+
 -- HYPER+L: Open news.google.com in the default browser
 -- lfun = function()
 --   news = "app = Application.currentApplication(); app.includeStandardAdditions = true; app.doShellScript('open http://news.google.com')"

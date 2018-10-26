@@ -1,4 +1,9 @@
+.my-bash/aliases
+.my-bash/completion
+.my-bash/functions
 .my-bash/lib
+.my-bash/plugins
+.my-bash/theme
 .hammerspoon
 .config/karabiner
 .config/fish
