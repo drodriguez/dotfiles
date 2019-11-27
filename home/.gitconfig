@@ -10,6 +10,7 @@
 [pager]
 	show = less -x4
 [alias]
+	addnows = !git --no-pager diff -U0 --ignore-cr-at-eol --ignore-space-at-eol --ignore-blank-lines --no-color | git apply --cached --ignore-whitespace --unidiff-zero
 	ci = commit
 	cv = commit -v
 	amend = commit --amend -C HEAD
