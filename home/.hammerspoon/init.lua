@@ -101,27 +101,7 @@ f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 -- end
 
 function karabinerSetProfile(profile_name)
-  local config = os.getenv("HOME") .. '/.config/karabiner/karabiner.json'
-  local fin = io.open(config, 'r')
-  if fin ~= nil then
-    local content = fin:read("*all")
-    fin:close()
-
-    hs.console.printStyledtext(content)
-    local karabiner = hs.json.decode(content)
-    
-    for idx, profile in pairs(karabiner['profiles']) do
-      profile['selected'] = profile['name'] == profile_name
-    end
-    
-    local new_content = hs.json.encode(karabiner, true)
-    local fout = io.open(config, 'w')
-    if fout ~= nil then
-      hs.console.printStyledtext('here')
-      fout:write(new_content)
-      fout:close()
-    end
-  end
+  os.execute("\"/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli\" --select-profile \"" .. profile_name .. "\"")
 end
 
 function usbDeviceCallback(data)
