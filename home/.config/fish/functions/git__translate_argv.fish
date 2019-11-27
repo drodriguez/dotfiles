@@ -3,7 +3,7 @@ function git__translate_argv
     if begin
         # is $arg a number, and small enough to be an index of $c?
         echo $arg | egrep '^[0-9]+$' >/dev/null ^&1
-        and math $arg '<=' (count $c) >/dev/null
+        and [ $arg -le (count $c) ]
       end
         echo "$c[$arg]"
     
