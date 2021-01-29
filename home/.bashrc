@@ -19,3 +19,5 @@ unset config_file
 unset config_dir
 
 export PS1=$PROMPT
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -14,6 +14,7 @@
 	ci = commit
 	cv = commit -v
 	amend = commit --amend -C HEAD
+	reword = commit --amend
 
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lp = log -p
@@ -79,5 +80,5 @@
 [color "diff"]
 	old = red strike
 	new = green italic
-[interactive]
-	diffFilter = diff-so-fancy --patch
+[commit]
+    template = ~/.gitmessage

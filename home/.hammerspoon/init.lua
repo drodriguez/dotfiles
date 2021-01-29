@@ -14,36 +14,6 @@ k:bind({}, "v", nil, function()
   k.triggered = true
 end)
 
--- HYPER+L: Open news.google.com in the default browser
--- lfun = function()
---   news = "app = Application.currentApplication(); app.includeStandardAdditions = true; app.doShellScript('open http://news.google.com')"
---   hs.osascript.javascript(news)
---   k.triggered = true
--- end
--- k:bind('', 'l', nil, lfun)
-
--- HYPER+M: Call a pre-defined trigger in Alfred 3
--- mfun = function()
---   cmd = "tell application \"Alfred 3\" to run trigger \"emoj\" in workflow \"com.sindresorhus.emoj\" with argument \"\""
---   hs.osascript.applescript(cmd)
---   k.triggered = true
--- end
--- k:bind({}, 'm', nil, mfun)
-
--- HYPER+E: Act like ⌃e and move to end of line.
--- efun = function()
---   hs.eventtap.keyStroke({'⌃'}, 'e')
---   k.triggered = true
--- end
--- k:bind({}, 'e', nil, efun)
-
--- HYPER+A: Act like ⌃a and move to beginning of line.
--- afun = function()
---   hs.eventtap.keyStroke({'⌃'}, 'a')
---   k.triggered = true
--- end
--- k:bind({}, 'a', nil, afun)
-
 -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
 pressedF18 = function()
   k.triggered = false
@@ -121,3 +91,46 @@ end
 
 local usbWatcher = hs.usb.watcher.new(usbDeviceCallback)
 usbWatcher:start()
+
+-- ShiftIt: https://github.com/peterklijn/hammerspoon-shiftit
+hs.loadSpoon("ShiftIt")
+shiftItBindings = {
+  {'left',  spoon.ShiftIt.left},
+  {'right', spoon.ShiftIt.right},
+  {'up',    spoon.ShiftIt.up},
+  {'down',  spoon.ShiftIt.down},
+  {'=',     spoon.ShiftIt.resizeOut},
+  {'-',     spoon.ShiftIt.resizeIn},
+  {'n',     spoon.ShiftIt.nextScreen},
+  {'p',     spoon.ShiftIt.previousScreen},
+  {'z',     spoon.ShiftIt.maximum}
+}
+for _, keyFn in pairs(shiftItBindings) do
+  k:bind({}, keyFn[1], nil, function()
+    keyFn[2]()
+    k.triggered = true
+  end)
+end
+
+
+-- Recover F1 ... F12 keys when pressing Hyper
+functionBindings = {
+  {'1', 'F1'},
+  {'2', 'F2'},
+  {'3', 'F3'},
+  {'4', 'F4'},
+  {'5', 'F5'},
+  {'6', 'F6'},
+  {'7', 'F7'},
+  {'8', 'F8'},
+  {'9', 'F9'},
+  {'0', 'F10'},
+--  {70, 'F11'},
+--  {71, 'F12'},
+}
+for _, keyFn in pairs(functionBindings) do
+  k:bind({}, keyFn[1], nil, function()
+    hs.eventtap.keyStroke({}, keyFn[2])
+    k.triggered = true
+  end)
+end

@@ -1,11 +1,3 @@
-[auth]
-push.prefix = push.code.tuenti.int
-push.username = drodriguez
-push.schemes = http
-pull.prefix = pull.code.tuenti.int
-pull.username = drodriguez
-pull.schemes = http
-
 [alias]
 ap = crecord
 describe = log -r . --template '{latesttag}-{latesttagdistance}{modified}-{node|short}\n'
@@ -13,24 +5,6 @@ lga = glog --style=$HOME/.hgext/map-cmdline.lg
 
 [diff]
 git = True
-
-[merge-tools]
-# emacs.args = -q --eval "(ediff-merge-with-ancestor \"$local\" \"$other\" \"$base\" nil \"$output\")"
-#filemerge.executable = opendiff-w
-#filemerge.args = $local $other -ancestor $base -merge $output
-#filemerge.gui = True
-kdiff3.args = $base $local $other -o $output
-
-sourcetreemerge.gui=False
-sourcetreebulkmerge.gui=False
-sourcetreemerge.binary=False
-sourcetreebulkmerge.executable=/Applications/SourceTree.app/Contents/Resources/hg-merge.sh
-sourcetreemerge.args=$local $other -ancestor $base -merge $output
-sourcetreemerge.checkconflicts=True
-sourcetreemerge.premerge=True
-sourcetreemerge.executable=/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh
-sourcetreebulkmerge.premerge=False
-sourcetreebulkmerge.binary=True
 
 [pager]
 pager = LESS='FSRX' less
@@ -41,32 +15,7 @@ ignore = version, update, server, record
 delay = 1.5
 
 [ui]
-username=Daniel Rodríguez Troitiño <drodriguez@tuenti.com>
-# merge = emacs
-# merge = vim
+username=Daniel Rodríguez Troitiño <>
 
 ignore=~/.hgignore_global
 
-[extensions]
-# attic = ~/.hgext/hgattic
-bookmarks =
-color =
-crecord = ~/.hgext/crecord/crecord
-histedit = ~/.hgext/histedit/hg_histedit.py
-graphlog =
-mercurial_keyring =
-mq =
-pager =
-progress =
-prompt = ~/.hgext/hg-prompt/prompt.py
-purge =
-record =
-rebase =
-remotebranches = ~/.hgext/hg-remotebranches/hg_remotebranches.py
-repo-push = ~/.hgext/repo-push/repo-push.py
-shelve = ~/.hgext/hgshelve/hgshelve.py
-transplant =
-
-[extdiff]
-cmd.sourcetreediff=opendiff
-opts.sourcetreediff=

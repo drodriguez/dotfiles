@@ -11,3 +11,5 @@
 .config/fish/functions
 .config/omf
 .config/omf/themes/mytheme
+.config/fish/completions
+.hammerspoon/Spoons/ShiftIt.spoon
