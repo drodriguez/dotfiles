@@ -1,0 +1,348 @@
+" Load plugins
+execute pathogen#infect()
+execute pathogen#helptags()
+
+" viMproved
+set nocompatible
+filetype off
+
+" Lines of history remembered
+set history=500
+
+" Enable filetype plugins
+filetype plugin indent on
+
+" Show me the the commands
+set showcmd
+
+" Auto read when file is changed from outside
+set autoread
+au FocusGained,BufEnter * checktime
+
+" Leader key bindings
+let mapleader = ","
+let g:mapleader = ","
+
+" Quick save
+nmap <leader>w :w!<cr>
+
+" :W saves a file with sudo
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" Keep 7 lines above/below the cursor for context
+set scrolloff=7
+
+" Do not show the cursor column
+set nocursorcolumn
+
+" Enable wildmenu
+set wildmenu
+
+" Ignore some files
+set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.DS_Store
+
+" Show the rules
+set ruler
+
+" Command bar height
+set cmdheight=1
+
+" Hide buffers when they are abandoned
+set hidden
+
+" Backspace over eol, indentation and line starts
+set backspace=eol,start,indent
+
+" Move lines with arrow keys or h/l when reaching the start/end of line
+set whichwrap+=<,>,h,l,[,]
+
+" Ignore case when searching
+set ignorecase
+
+" Use smartcase when searching
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Use incremental search
+set incsearch
+
+" Lazy redraw while replaying macros
+set lazyredraw
+
+" Use magic mode for regular expressions
+set magic
+
+" Show matching brackets (and how many tenths of second to blink)
+set showmatch
+set mat=2
+
+" Disable sound
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" Add space on the left
+set foldcolumn=1
+
+" Set margin numbers and autoswitching from/out insert mode
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" Persistent undo (undo across closing buffers)
+try
+  set undodir=~/.vim/temp_dirs/undodir
+  set undofile
+catch
+endtry
+
+" Prefer splits to the right and below the current window
+set splitright
+set splitbelow
+
+" Do not recognize octal with the leading zero
+set nrformats-=octal
+
+" Time out in key codes but not mappings
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
+" Complete with the longest common text, and always show menu
+set completeopt=longest,menuone,preview
+
+" Use a mouse
+if has('mouse')
+  set mouse=a
+endif
+set ttymouse=xterm
+
+" Enable syntax highlighting
+syntax enable
+
+" Faster syntax highlights
+" Only look 256 lines trying to find where syntax highlight should start
+syntax sync minlines=256
+" Do not syntax highlight beyond certain column
+set synmaxcol=300
+
+if exists('$TMUX')
+  set term=screen-256color
+endif
+
+set background=dark
+
+let g:solarized_termcolors=256
+
+try
+	colorscheme solarized
+catch
+endtry
+
+" Set UTF-8 as default encoding
+set encoding=utf-8
+
+" Set Unix as the file type
+set fileformats=unix,dos,mac
+
+" No backups (avoid rogue files in Git)
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Use spaces by default
+set expandtab
+
+" Use shiftwidth at the start of the line, but tabstop everywhere else
+set smarttab
+
+" Set default tab width
+set shiftwidth=2
+set tabstop=2
+
+" Use multiples of shiftwidth when indenting
+set shiftround
+
+" Enable auto indent
+set autoindent
+set smartindent
+set wrap
+
+" Line wrap length
+set textwidth=120
+
+" Format options
+" Format comments; insert comment leader, recognize number lists, don't break
+" line after 1 letter word.
+set formatoptions=qrn1
+
+" Space searches forward. Ctrl+Space searches backwards.
+map <space> /
+map <C-space> ?
+
+" Remove highlight with <leader><cr>
+map <silent> <leader><cr> :nohlsearch<cr>
+
+" Move between Windows with Vim keys
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Move to previous/next buffer with <leader>h/l
+map <leader>l :bnext<cr>
+map <leader>h :bprevious<cr>
+
+" Tabs creation, closing, moving
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext<cr>
+
+" Move up and down on splitted lines
+map <Up> gk
+map <Down> gj
+map k gk
+map j gj
+
+" Center search results when moving to the next or previous one
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+
+
+" <leader>tl swiches to the most recent tab
+let g:lasttab = 1
+nmap <leader>tl :exe "tabn ".g:lasttab<cr>
+au TabLeave * let g:lasttab = tabpagenr()
+
+" <leader>te prefills :tabedit with the current path
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
+" Show tabline always
+set showtabline=2
+
+" Replaced by lastplace plugin
+" Return to the last edit position when reopening files
+" au BufReadPost *
+"     \ if line("'\"") > 1 && line("'\"") <= line("$") |
+"     \ exe "normal! g'\"" |
+"     \ endif
+
+" Always show the status line
+set laststatus=2
+
+" Format of the status line
+set statusline=\ %{HasPaste}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+" Delete trailing whitespace on save
+fun! TrimTrailingWhitespace()
+  let save_cursor = getpos(".")
+  let old_query = getreg("/")
+  silent! %s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
+endfun
+
+autocmd BufWritePre *.txt,*.py,*.sh,*.c,*.cpp,*.m,*.h,*.hpp,*.swift :call TrimTrailingWhitspace()
+
+" Spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts for spellcheck
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+" Toggle paste mode on/off
+map <leader>!p :setlocal paste!<cr>
+
+" Reload customization vimrc quickly
+map <leader>e :e! ~/.vim/vimrcs/customizations.vim<cr>
+autocmd! bufwritepost ~/.vim/vimrcs/customizations.vim source ~/.vim/vimrcs/customizations.vim
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+  if &paste
+    return 'PASTE MODE   '
+  endif
+  return ''
+endfunction
+
+
+" TEXT
+autocmd FileType text setlocal textwidth=80 fo+=2t ts=2 sw=2 sts=2 expandtab
+autocmd BufNewFile,BufRead *.md,*.txt setlocal textwidth=80 fo+=2t ts=2 sw=2 sts=2 expandtab
+
+
+" PYTHON
+let python_highlight_all = 1
+au FileType python syn keyword pythonDecorator True None False self
+
+au FileType python map <buffer> F :set foldmethod=indent<cr>
+
+
+" MARKDOWN
+let vim_markdown_folding_disabled = 1
+set conceallevel=0
+
+
+" GIT COMMITS
+autocmd FileType gitcommit setlocal spell
+
+
+" VIM-RIPGREP
+map <leader>g :Rg
+
+
+" LANGUAGECLIENT-NEOVIM
+let g:LanguageClient_serverCommands = {
+  \ 'cpp': ['~/.vim-clangd/llvm-build/bin/clangd']
+  \ }
+
+" Shift-K: See documentation
+noremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" gd: Go to definition
+noremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" F2: syntax aware rename
+noremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+
+" COLORCOLUMN
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+
+" VIM-AIRLINE
+let g:airline_theme='solarized'
+
+
+" FZF
+" Use Ctrl+P
+nmap <C-P> :FZF<CR>
+
+
+" NERDTREE
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+
+" YANKSTACK
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+" TODO: noshowmode (airline or lightline?)
+" TODO: check ttyfast over et+tmux

@@ -1,3 +1,78 @@
 [submodule "home/.scm_breeze"]
 	path = home/.scm_breeze
 	url = https://github.com/ndbroadbent/scm_breeze.git
+[submodule "home/.vim/bundle/LanguageClient-neovim"]
+	path = home/.vim/bundle/LanguageClient-neovim
+	url = https://github.com/autozimu/LanguageClient-neovim.git
+[submodule "home/.vim/bundle/vim-cmake-syntax"]
+	path = home/.vim/bundle/vim-cmake-syntax
+	url = https://github.com/pboettch/vim-cmake-syntax.git
+[submodule "home/.vim/bundle/vim-fish"]
+	path = home/.vim/bundle/vim-fish
+	url = https://github.com/blankname/vim-fish
+[submodule "home/.vim/bundle/vim-ripgrep"]
+	path = home/.vim/bundle/vim-ripgrep
+	url = https://github.com/jremmen/vim-ripgrep.git
+[submodule "home/.vim/bundle/vim-swift"]
+	path = home/.vim/bundle/vim-swift
+	url = https://github.com/arzg/vim-swift.git
+[submodule "home/.vim/bundle/nerdtree"]
+	path = home/.vim/bundle/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "home/.vim/bundle/nerdtree-git-plugin"]
+	path = home/.vim/bundle/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule "home/.vim/bundle/rust.vim"]
+	path = home/.vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule "home/.vim/bundle/vim-airline"]
+	path = home/.vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "home/.vim/bundle/vim-airline-themes"]
+	path = home/.vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "home/.vim/bundle/vim-colors-solarized"]
+	path = home/.vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "home/.vim/bundle/vim-fugitive"]
+	path = home/.vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "home/.vim/bundle/vim-git"]
+	path = home/.vim/bundle/vim-git
+	url = https://github.com/tpope/vim-git.git
+[submodule "home/.vim/bundle/vim-gitgutter"]
+	path = home/.vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "home/.vim/bundle/vim-json"]
+	path = home/.vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json.git
+[submodule "home/.vim/bundle/vim-markdown"]
+	path = home/.vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "home/.vim/bundle/vim-python-pep8-indent"]
+	path = home/.vim/bundle/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent.git
+[submodule "home/.vim/bundle/vim-yaml"]
+	path = home/.vim/bundle/vim-yaml
+	url = https://github.com/stephpy/vim-yaml.git
+[submodule "home/.vim/bundle/fzf"]
+	path = home/.vim/bundle/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "home/.vim/bundle/ale"]
+	path = home/.vim/bundle/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule "home/.vim/bundle/auto-pairs"]
+	path = home/.vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "home/.vim/bundle/vim-commentary"]
+	path = home/.vim/bundle/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "home/.vim/bundle/vim-expand-region"]
+	path = home/.vim/bundle/vim-expand-region
+	url = https://github.com/terryma/vim-expand-region.git
+[submodule "home/.vim/bundle/vim-lastplace"]
+	path = home/.vim/bundle/vim-lastplace
+	url = https://github.com/farmergreg/vim-lastplace
+[submodule "home/.vim/bundle/vim-yankstack"]
+	path = home/.vim/bundle/vim-yankstack
+	url = https://github.com/maxbrunsfeld/vim-yankstack.git
