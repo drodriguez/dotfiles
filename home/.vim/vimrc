@@ -239,8 +239,16 @@ set showtabline=2
 " Always show the status line
 set laststatus=2
 
+" Returns true if paste mode is enabled
+function! HasPaste()
+  if &paste
+    return 'PASTE MODE   '
+  endif
+  return ''
+endfunction
+
 " Format of the status line
-set statusline=\ %{HasPaste}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 " Delete trailing whitespace on save
 fun! TrimTrailingWhitespace()
@@ -268,15 +276,6 @@ map <leader>!p :setlocal paste!<cr>
 " Reload customization vimrc quickly
 map <leader>e :e! ~/.vim/vimrcs/customizations.vim<cr>
 autocmd! bufwritepost ~/.vim/vimrcs/customizations.vim source ~/.vim/vimrcs/customizations.vim
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-  if &paste
-    return 'PASTE MODE   '
-  endif
-  return ''
-endfunction
-
 
 " TEXT
 autocmd FileType text setlocal textwidth=80 fo+=2t ts=2 sw=2 sts=2 expandtab

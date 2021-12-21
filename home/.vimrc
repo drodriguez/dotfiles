@@ -1,1 +1,1 @@
-/Users/danielrodriguez/.vim/vimrc
+.vim/vimrc
