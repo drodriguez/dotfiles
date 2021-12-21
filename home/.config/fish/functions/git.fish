@@ -26,7 +26,7 @@ end
 function _git_status
   # TODO: what if some format other than --short is here?
   set -l short_status (command git status --short $argv)
-  set -l branch (git symbolic-ref HEAD ^/dev/null | sed 's:refs/heads/::')
+  set -l branch (git symbolic-ref HEAD 2>/dev/null | sed 's:refs/heads/::')
   set -l staged_lines
   set -l unstaged_lines
   set -l unknown_lines

@@ -1,6 +1,6 @@
 function git__acquire_changes
 
-    alias _first_character "sed 's/^\(.\).*/\1/'"
+    alias _first_character='sed "s/^\\(.\\).*/\\1/"'
 # I'm using a single-character variable here for convenience at the command
 # line. `c` contains every changed (staged, outstanding, or untracked) file.
     set -g c
