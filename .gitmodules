@@ -10,9 +10,6 @@
 [submodule "home/.vim/bundle/vim-fish"]
 	path = home/.vim/bundle/vim-fish
 	url = https://github.com/blankname/vim-fish
-[submodule "home/.vim/bundle/vim-ripgrep"]
-	path = home/.vim/bundle/vim-ripgrep
-	url = https://github.com/jremmen/vim-ripgrep.git
 [submodule "home/.vim/bundle/vim-swift"]
 	path = home/.vim/bundle/vim-swift
 	url = https://github.com/arzg/vim-swift.git
@@ -55,9 +52,6 @@
 [submodule "home/.vim/bundle/vim-yaml"]
 	path = home/.vim/bundle/vim-yaml
 	url = https://github.com/stephpy/vim-yaml.git
-[submodule "home/.vim/bundle/fzf"]
-	path = home/.vim/bundle/fzf
-	url = https://github.com/junegunn/fzf.git
 [submodule "home/.vim/bundle/ale"]
 	path = home/.vim/bundle/ale
 	url = https://github.com/dense-analysis/ale.git
@@ -76,3 +70,9 @@
 [submodule "home/.vim/bundle/vim-yankstack"]
 	path = home/.vim/bundle/vim-yankstack
 	url = https://github.com/maxbrunsfeld/vim-yankstack.git
+[submodule "home/.vim/bundle/fzf.vim"]
+	path = home/.vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "home/.vim/bundle/fzf"]
+	path = home/.vim/bundle/fzf
+	url = https://github.com/junegunn/fzf.git
