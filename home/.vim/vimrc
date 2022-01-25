@@ -117,13 +117,6 @@ set ttimeoutlen=10
 " Complete with the longest common text, and always show menu
 set completeopt=longest,menuone,preview
 
-" Use a mouse
-if has('mouse')
-  set mouse=a
-endif
-set ttymouse=xterm
-
-" Enable syntax highlighting
 syntax enable
 
 " Faster syntax highlights
@@ -259,7 +252,7 @@ fun! TrimTrailingWhitespace()
   call setreg('/', old_query)
 endfun
 
-autocmd BufWritePre *.txt,*.py,*.sh,*.c,*.cpp,*.m,*.h,*.hpp,*.swift :call TrimTrailingWhitspace()
+autocmd BufWritePre *.txt,*.py,*.sh,*.c,*.cpp,*.m,*.h,*.hpp,*.swift :call TrimTrailingWhitespace()
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -329,7 +322,7 @@ let g:airline_theme='solarized'
 
 " FZF
 " Use Ctrl+P
-nmap <C-P> :FZF<CR>
+nmap <C-P> :Files<CR>
 
 
 " NERDTREE
