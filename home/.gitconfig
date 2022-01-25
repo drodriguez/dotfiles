@@ -82,3 +82,7 @@
 	new = green italic
 [commit]
     template = ~/.gitmessage
+[pull]
+	ff = only
+[rebase]
+	autoSquash = true
