@@ -252,7 +252,7 @@ fun! TrimTrailingWhitespace()
   call setreg('/', old_query)
 endfun
 
-autocmd BufWritePre *.txt,*.py,*.sh,*.c,*.cpp,*.m,*.h,*.hpp,*.swift :call TrimTrailingWhitespace()
+autocmd BufWritePre *.txt,*.py,*.sh,*.c,*.cpp,*.m,*.h,*.hpp,*.swift,*.rs :call TrimTrailingWhitespace()
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
