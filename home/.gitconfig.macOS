@@ -1,0 +1,2 @@
+[pager]
+	show = less -x4
