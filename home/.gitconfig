@@ -1,88 +1,92 @@
-[user]
-	name = Daniel Rodríguez Troitiño
-	email = drodrigueztroitino@yahoo.es
-[color]
-	ui = auto
-[core]
-	excludesfile = ~/.gitignore
-	trustctime = false
-	pager = diff-so-fancy | less --tabs 4 -RFX
-[pager]
-	show = less -x4
 [alias]
-	addnows = !git --no-pager diff -U0 --ignore-cr-at-eol --ignore-space-at-eol --ignore-blank-lines --no-color | git apply --cached --ignore-whitespace --unidiff-zero
-	ci = commit
-	cv = commit -v
-	amend = commit --amend -C HEAD
-	reword = commit --amend
+  ci = commit
+  cv = commit -v
+  amend = commit --amend
+  reword = commit --amend --only
+  fixup = "!_() { git commit --fixup=$1 ${@:2} ; }; _"
+  squash = "!_() { git commit --squash=$1 ${@:2} ; }; _"
 
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	lp = log -p
-	ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
-	ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --numstat
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lp = log -p
+  ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
+  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate --numstat
 
-	cb = checkout -b
-	ct = checkout --track
+  cb = checkout -b
+  ct = checkout --track
 
-	ap = add -p
+  ap = add -p
+  addnows = !git --no-pager diff -U0 --ignore-cr-at-eol --ignore-space-at-eol --ignore-blank-lines --no-color | git apply --cached --ignore-whitespace --unidiff-zero
 
-	st = status -sb
+  st = status -sb
 
-	br = branch
+  br = branch
 
-	co = checkout
+  co = checkout
 
-	df = diff
+  df = diff
 
-	pr = pull --rebase
-	prd = "!_() { git stash save && git pull --rebase && git stash pop; }; _"
+  pr = pull --rebase
+  prd = "!_() { git stash save && git pull --rebase && git stash pop; }; _"
 
-	ps = push --set-upstream
+  ps = push --set-upstream
 
-	undo = reset --soft HEAD^
+  undo = reset --soft HEAD^
 
-	count = shortlog -sn
+  count = shortlog -sn
 
-	credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
+  credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
 
-	sl = stash list
-	ss = stash save
-	sp = stash pop
-	sa = stash apply
+  sl = stash list
+  ss = stash save
+  sp = stash pop
+  sa = stash apply
 
-	sup = submodule update --init --recursive
-[github]
-	user = drodriguez
-[merge]
-	tool = opendiff
-[push]
-	default = current
-[diff]
-	renames = copies
-	mnemonicprefix = true
-	compactionHeuristic = true
-[rerere]
-	enabled = true
-[credential]
-	helper = osxkeychain
-[merge]
-	defaultToUpstream = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  sup = submodule update --init --recursive
+
+[color]
+  ui = auto
+
 [color "diff"]
-	old = red strike
-	new = green italic
-[commit]
-    template = ~/.gitmessage
+  old = red ul
+  new = green bold
+
+[core]
+  excludesfile = ~/.gitignore
+  trustctime = false
+  pager = diff-so-fancy | less --tabs 4 -RFX
+  autocrlf = input
+
+[diff]
+  renames = copies
+  mnemonicprefix = true
+  compactionHeuristic = true
+
+[merge]
+  defaultToUpstream = true
+  tool = vimdiff
+
 [pull]
-	ff = only
+  ff = only
+
+[push]
+  default = current
+
 [rebase]
-	autoSquash = true
+  autoSquash = true
+
+[rerere]
+  enabled = true
+
+[credential]
+  helper = cache --timeout 3600
+
+[user]
+  name = Daniel Rodríguez Troitiño
+  email = drodrigueztroitino@yahoo.es
+
+[include]
+  path = ~/.gitconfig.local
+
+[includeIf "gitdir:/Users"]
+  path = ~/.gitconfig.macOS
+
