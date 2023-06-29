@@ -76,3 +76,6 @@
 [submodule "home/.vim/bundle/fzf"]
 	path = home/.vim/bundle/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "home/.vim/bundle/tender.vim"]
+	path = home/.vim/bundle/tender.vim
+	url = https://github.com/jacoborus/tender.vim.git
