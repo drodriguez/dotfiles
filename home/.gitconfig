@@ -43,6 +43,10 @@
 
   sup = submodule update --init --recursive
 
+  dft = -c diff.external=difft diff
+  dft-log = -c diff.external=difft log --ext-diff
+  dft-show = -c diff.external=difft show --ext-diff
+
 [color]
   ui = auto
 
