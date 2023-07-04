@@ -114,6 +114,56 @@ for _, keyFn in pairs(functionBindings) do
   end)
 end
 
+-- Hyper+,: Cascade frontmost app windows
+function cascadeWindows()
+  local frontWindow = hs.window.frontmostWindow()
+  local screen = frontWindow:screen()
+  local app = frontWindow:application()
+  local visibleWindows = app:visibleWindows()
+
+  local layoutWindows = {}
+  for i, window in ipairs(visibleWindows) do
+    if window:isStandard() then
+      if window:screen() == screen then
+        layoutWindows[#layoutWindows+1] = window
+      end
+    end
+  end
+
+  -- We start just under the menu bar, and advance down and right by the width,
+  -- height of the title bar.
+  -- The width is just 3/5 of the screen width, while the height depends on
+  -- the number of windows (with a minsize just in case)
+  local xPos, yPos = 0, 20
+  local xOffset, yOffset = 20, 20
+  local width = screen:frame().w * 3 / 5
+  local height = (screen:frame().h - yPos) - (yOffset * #layoutWindows)
+  height = math.max(height, screen:frame().h * 3 / 5)
+
+  local layouts = {}
+  for i, window in ipairs(layoutWindows) do
+    local windowPosition = {
+      app,
+      window,
+      screen,
+      nil,
+      hs.geometry.rect(
+        xPos + (i - 1) * xOffset,
+        yPos + (i - 1) * yOffset,
+        width,
+        height
+      ),
+      nil
+    }
+    layouts[#layouts+1] = windowPosition
+  end
+  hs.layout.apply(layouts)
+end
+k:bind({}, ",", nil, function()
+  cascadeWindows()
+  k.triggered = true
+end)
+
 -- Caffeine menubar
 caffeine = hs.menubar.new()
 
