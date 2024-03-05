@@ -3,8 +3,8 @@
   cv = commit -v
   amend = commit --amend
   reword = commit --amend --only
-  fixup = "!_() { git commit --fixup=$1 ${@:2} ; }; _"
-  squash = "!_() { git commit --squash=$1 ${@:2} ; }; _"
+  fixup = "!_() { git commit --fixup=$1 \"${@:2}\" ; }; _"
+  squash = "!_() { git commit --squash=$1 \"${@:2}\" ; }; _"
 
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   lp = log -p
