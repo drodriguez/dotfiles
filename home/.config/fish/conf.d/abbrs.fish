@@ -15,8 +15,9 @@ if not set -q abbrs_initialized
   abbr -a grs git reset
   abbr -a grc git rebase --continue
   abbr -a gs git status
-  abbr -a ls exa
-  abbr -a ll exa -al
+  abbr -a ls eza
+  abbr -a ll eza -al
+  abbr -a cat bat
   abbr -a mategem gem edit -e mate
   abbr -a pi bundle exec pod install
 

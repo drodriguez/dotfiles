@@ -8,3 +8,4 @@ end
 
 direnv hook fish | source
 
+zoxide init --cmd cd fish | source
