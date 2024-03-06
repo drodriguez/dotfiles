@@ -1,5 +1,10 @@
 # Many ideas and code lifted from https://github.com/revans/bash-it
 
+# Unlike earlier versions, Bash4 sources your bashrc on non-interactive shells.
+# The line below prevents anything in this file from creating output that will
+# break utilities that use ssh as a pipe, including git and mercurial.
+[ -z "$PS1" ] && return
+
 alias reload='source ~/.bash_profile'
 
 source ~/.my-bash/theme/colors.bash
