@@ -157,6 +157,3 @@ function _padding
     set -l color $argv[1]
     echo -n (set_color --bold $color)'#'(set_color normal)'      '
 end
-
-
-

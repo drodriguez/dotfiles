@@ -26,4 +26,3 @@ function __ssh_agent_start -d "start a new ssh agent"
   chmod 600 $SSH_ENV
   source $SSH_ENV > /dev/null
 end
-
