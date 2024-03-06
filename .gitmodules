@@ -79,3 +79,6 @@
 [submodule "home/.vim/bundle/tender.vim"]
 	path = home/.vim/bundle/tender.vim
 	url = https://github.com/jacoborus/tender.vim.git
+[submodule "home/.local/share/omf"]
+	path = home/.local/share/omf
+	url = https://github.com/oh-my-fish/oh-my-fish.git
