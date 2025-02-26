@@ -13,3 +13,5 @@
 .config/omf/themes/mytheme
 .config/fish/completions
 .hammerspoon/Spoons/ShiftIt.spoon
+.local/share/omf
+.vim

@@ -36,10 +36,10 @@
 
   credit = "!_() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; _"
 
-  sl = stash list
-  ss = stash save
-  sp = stash pop
-  sa = stash apply
+  stl = stash list
+  sts = stash save
+  stp = stash pop
+  sta = stash apply
 
   sup = submodule update --init --recursive
 
@@ -126,3 +126,8 @@
 [includeIf "gitdir:/Users"]
   path = ~/.gitconfig.macOS
 
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
