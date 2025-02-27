@@ -1,34 +1,46 @@
 function git__acquire_changes
-
-    alias _first_character "sed 's/^\(.\).*/\1/'"
-# I'm using a single-character variable here for convenience at the command
-# line. `c` contains every changed (staged, outstanding, or untracked) file.
-    set -g c
+    set -g git__changes_filename
 
     # this un/staged dance is to get the short-status list in the same order
     # that will show up in `git status`.
-    set -l staged_files
-    set -l unstaged_files
-    for line in (command git status --short)
-        switch (echo $line | _first_character)
-        case M D R C A # staged files: Modified, Deleted, Renamed, Copied, or Added
-            set staged_files $staged_files $line
+    set -l staged_lines
+    set -l unstaged_lines
+    set -l unknown_lines
+  # TODO: what if some format other than --short is here?
+    for line in (command git status --short $argv)
+        set -l staged_state (string sub --length 1 $line)
+        set -l unstaged_state (string sub --start 2 --length 1 $line)
+        
+        switch $staged_state
+        case '\?' ' '
         case '*'
-            set unstaged_files $unstaged_files $line
+            set staged_lines $staged_lines $line
+        end
+
+        switch $unstaged_state
+        case ' '
+        case '\?'
+            set unknown_lines $unknown_lines $line
+        case '*'
+            set unstaged_lines $unstaged_lines $line
         end
     end
 
-    for line in $staged_files $unstaged_files
-        switch (echo $line | _first_character)
+    set -g git__changes_unstaged_lines $unstaged_lines
+    set -g git__changes_staged_lines $staged_lines
+    set -g git__changes_unknown_lines $unknown_lines
+
+    for line in $staged_lines $unstaged_lines $unknown_lines
+        switch (string trim --left $line | string sub --length 1)
         case R C # 'R' in a short-status indicates a staged renamed file. 'C'
                  # is a staged copied file. In both cases we have two
                  # filenames to think about. This code will break in the
                  # inexcusable case that the old filename contained ' -> '.
-            for file in (echo $line | sed 's/^...//' | sed 's/ -> /\n/')
-                set c $c $file
+            for file in (string sub --start 4 $line | string split ' -> ')
+                set git__changes_filename  $git__changes_filename $file
             end
         case '*'
-            set c $c (echo $line | sed 's/^...//')
+            set git__changes_filename $git__changes_filename (string sub --start 4 $line)
         end
     end
 

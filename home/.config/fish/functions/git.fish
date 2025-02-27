@@ -14,7 +14,7 @@ function git
 
   switch $cmd
   case 'status'
-    git__acquire_changes
+    git__acquire_changes $translated_argv
     _git_status $translated_argv
     return $status
   case '*'
@@ -24,53 +24,30 @@ function git
 end
 
 function _git_status
-  # TODO: what if some format other than --short is here?
-  set -l short_status (command git status --short $argv)
-  set -l branch (git symbolic-ref HEAD 2>/dev/null | sed 's:refs/heads/::')
-  set -l staged_lines
-  set -l unstaged_lines
-  set -l unknown_lines
-  for line in $short_status
-    set -l staged_state (echo $line | sed 's/^\(.\).*/\1/')
-    set -l unstaged_state (echo $line | sed 's/^.\(.\).*/\1/')
-
-    switch $staged_state
-    case '\?' ' '
-    case '*'
-        set staged_lines $staged_lines $line
-    end
-
-    switch $unstaged_state
-    case ' '
-    case '\?'
-        set unknown_lines $unknown_lines $line
-    case '*'
-        set unstaged_lines $unstaged_lines $line
-    end
-  end
+  set -l branch (git symbolic-ref HEAD 2>/dev/null | string replace 'refs/heads/' '')
 
   echo On branch (set_color --bold)$branch(set_color normal)
   echo
 
-  if [ (count $staged_lines) != 0 ]
+  if [ (count $git__changes_staged_lines) != 0 ]
       echo (set_color --bold green)Changes to be committed:(set_color normal)
-      for line in $staged_lines
+      for line in $git__changes_staged_lines
           _staged_status_line $line
       end
       echo
   end
 
-  if [ (count $unstaged_lines) != 0 ]
+  if [ (count $git__changes_unstaged_lines) != 0 ]
       echo (set_color --bold yellow)Unstaged changes:(set_color normal)
-      for line in $unstaged_lines
+      for line in $git__changes_unstaged_lines
           _unstaged_status_line $line
       end
       echo
   end
 
-  if [ (count $unknown_lines) != 0 ]
+  if [ (count $git__changes_unknown_lines) != 0 ]
       echo (set_color --bold red)Untracked files:(set_color normal)
-      for line in $unknown_lines
+      for line in $git__changes_unknown_lines
           _unknown_status_line $line
       end
       echo
@@ -79,8 +56,8 @@ end
 
 function _staged_status_line
     set -l line $argv[1]
-    set -l filename (echo $line | sed 's/...//')
-    set -l state (echo $line | sed 's/^\(.\).*/\1/')
+    set -l filename (string sub --start 4 $line)
+    set -l state (string sub --length 1 $line)
 
     _padding green
     switch $state
@@ -102,8 +79,8 @@ end
 
 function _unstaged_status_line
     set -l line $argv[1]
-    set -l filename (echo $line | sed 's/...//')
-    set -l state (echo $line | sed 's/^.\(.\).*/\1/')
+    set -l filename (string sub --start 4 $line)
+    set -l state (string sub --start 2 --length 1 $line)
 
     _padding yellow
     switch $state
@@ -112,9 +89,10 @@ function _unstaged_status_line
     case T; echo -n 'typechange'
     # U is actually "unmerged." Can non-conflict cases cause a U?
     case U; echo -n '  conflict'
+    case m; echo -n 'modified s'
     case ' ' '\?'
     case '*' # unknown state!
-    echo -n '         '$state
+           echo -n '         '$state
     end
 
     _display_filename $filename yellow
@@ -122,7 +100,7 @@ end
 
 function _unknown_status_line
     set -l line $argv[1]
-    set -l filename (echo $line | sed 's/...//')
+    set -l filename (string sub --start 4 $line)
 
     _padding red
     echo -n ' untracked'
@@ -135,17 +113,17 @@ function _display_filename
 
     switch $filename
     case '* -> *'
-        set -l old (echo $filename | sed 's/ -> .*//')
-        set -l new (echo $filename | sed 's/.* -> //')
-        echo -n ': ['(contains -i $old $c)'] '
+        set -l old (string split --fields 1 ' -> ' $filename)
+        set -l new (string split --fields 2 ' -> ' $filename)
+        echo -n ': ['(contains -i $old $git__changes_filename)'] '
         set_color $file_color
         echo -n $old
         set_color normal
-        echo -n ' -> ['(contains -i $new $c)'] '
+        echo -n ' -> ['(contains -i $new $git__changes_filename)'] '
         set_color $file_color
         echo -n $new
     case '*'
-        echo -n ': ['(contains -i $filename $c)'] '
+        echo -n ': ['(contains -i $filename $git__changes_filename)'] '
         set_color $file_color
         echo -n $filename
     end
