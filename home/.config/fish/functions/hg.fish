@@ -17,6 +17,9 @@ function hg
     hg__acquire_changes
     _hg_status $translated_argv
     return $status
+  case 'prev' 'next'
+    # You normally pass a number, so skip the translation
+    command hg $cmd $argv
   case '*'
     command hg $cmd $translated_argv
     return $status

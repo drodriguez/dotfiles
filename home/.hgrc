@@ -18,4 +18,10 @@ delay = 1.5
 username=Daniel Rodríguez Troitiño <>
 
 ignore=~/.hgignore_global
+[extensions]
+sparse =
+extdiff =
 
+[extdiff]
+cmd.delta =
+opts.delta = --file-transformation 's|^[^/]+/[^/]+/(.*)$|$1|'

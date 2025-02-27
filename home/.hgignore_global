@@ -3,4 +3,4 @@ syntax: glob
 *~
 .DS_Store
 .envrc
-
+.mypy_cache
