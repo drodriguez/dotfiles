@@ -47,6 +47,9 @@
   dft-log = -c diff.external=difft log --ext-diff
   dft-show = -c diff.external=difft show --ext-diff
 
+[branch]
+  sort = -committerdate
+
 [color]
   ui = auto
 
@@ -65,11 +68,20 @@
   newNormal = green bold
   newHighlight = green bold 22
 
+[column]
+  ui = auto
+
+[commit]
+  verbose = true
+
 [core]
-  excludesfile = ~/.gitignore
-  trustctime = false
-  pager = delta
   autocrlf = input
+  excludesfile = ~/.gitignore
+  pager = delta
+  trustctime = false
+
+[credential]
+  helper = cache --timeout 3600
 
 [delta]
   features = decorations
@@ -86,18 +98,34 @@
   hunk-header-line-number-style = "#067a00"
   hunk-header-style = file line-number syntax
 
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  compactionHeuristic = true
+  mnemonicprefix = true
+  renames = copies
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[help]
+  autocorrect = prompt
+
 [init]
   defaultBranch = main
 
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
-[diff]
-  renames = copies
-  mnemonicprefix = true
-  compactionHeuristic = true
-
 [merge]
+  conflictstyle = zdiff3
   defaultToUpstream = true
   tool = vimdiff
 
@@ -106,15 +134,19 @@
 
 [push]
   default = current
+  autoSetupRemote = true
 
 [rebase]
   autoSquash = true
+  autoStash = true
+  updateRefs = true
 
 [rerere]
   enabled = true
+  autoupdate = true
 
-[credential]
-  helper = cache --timeout 3600
+[tag]
+  sort = version:refname
 
 [user]
   name = Daniel Rodríguez Troitiño
@@ -126,8 +158,3 @@
 [includeIf "gitdir:/Users"]
   path = ~/.gitconfig.macOS
 
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
