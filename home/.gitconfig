@@ -107,7 +107,6 @@
 
 [fetch]
   prune = true
-  pruneTags = true
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
