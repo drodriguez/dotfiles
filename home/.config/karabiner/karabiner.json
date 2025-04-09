@@ -1,78 +1,97 @@
 {
-  "global" : {
-    "show_profile_name_in_menu_bar" : false,
-    "check_for_updates_on_startup" : true,
-    "show_in_menu_bar" : true
-  },
-  "profiles" : [
-    {
-      "selected" : true,
-      "name" : "With Microsoft Sculp Keyboard",
-      "devices" : [
+    "profiles": [
         {
-          "identifiers" : {
-            "product_id" : 1957,
-            "vendor_id" : 1118,
-            "is_keyboard" : true,
-            "is_pointing_device" : false
-          },
-          "disable_built_in_keyboard_if_exists" : false,
-          "ignore" : false
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 1957,
+                        "vendor_id": 1118
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "application" },
+                            "to": [{ "key_code": "right_option" }]
+                        },
+                        {
+                            "from": { "key_code": "left_command" },
+                            "to": [{ "key_code": "left_option" }]
+                        },
+                        {
+                            "from": { "key_code": "left_option" },
+                            "to": [{ "key_code": "left_command" }]
+                        },
+                        {
+                            "from": { "key_code": "right_option" },
+                            "to": [{ "key_code": "right_command" }]
+                        }
+                    ]
+                }
+            ],
+            "fn_function_keys": [
+                {
+                    "from": { "key_code": "f1" },
+                    "to": [{ "key_code": "display_brightness_decrement" }]
+                },
+                {
+                    "from": { "key_code": "f2" },
+                    "to": [{ "key_code": "display_brightness_increment" }]
+                },
+                {
+                    "from": { "key_code": "f3" },
+                    "to": [{ "key_code": "mission_control" }]
+                },
+                {
+                    "from": { "key_code": "f4" },
+                    "to": [{ "key_code": "launchpad" }]
+                },
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "key_code": "illumination_decrement" }]
+                },
+                {
+                    "from": { "key_code": "f6" },
+                    "to": [{ "key_code": "illumination_increment" }]
+                },
+                {
+                    "from": { "key_code": "f7" },
+                    "to": [{ "key_code": "f7" }]
+                },
+                {
+                    "from": { "key_code": "f8" },
+                    "to": [{ "key_code": "f8" }]
+                },
+                {
+                    "from": { "key_code": "f9" },
+                    "to": [{ "key_code": "play_or_pause" }]
+                },
+                {
+                    "from": { "key_code": "f10" },
+                    "to": [{ "key_code": "mute" }]
+                },
+                {
+                    "from": { "key_code": "f11" },
+                    "to": [{ "key_code": "volume_decrement" }]
+                },
+                {
+                    "from": { "key_code": "f12" },
+                    "to": [{ "key_code": "volume_increment" }]
+                }
+            ],
+            "name": "Default",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "f18" }]
+                }
+            ],
+            "virtual_hid_keyboard": {
+                "caps_lock_delay_milliseconds": 0,
+                "country_code": 0,
+                "keyboard_type": "ansi",
+                "keyboard_type_v2": "ansi"
+            }
         }
-      ],
-      "simple_modifications" : {
-        "left_command" : "left_option",
-        "right_option" : "right_command",
-        "caps_lock" : "f18",
-        "right_command" : "right_option",
-        "left_option" : "left_command"
-      },
-      "fn_function_keys" : {
-        "f12" : "volume_increment",
-        "f9" : "play_or_pause",
-        "f5" : "illumination_decrement",
-        "f10" : "mute",
-        "f1" : "display_brightness_decrement",
-        "f6" : "illumination_increment",
-        "f2" : "display_brightness_increment",
-        "f7" : "f7",
-        "f11" : "volume_decrement",
-        "f3" : "mission_control",
-        "f8" : "f8",
-        "f4" : "launchpad"
-      },
-      "virtual_hid_keyboard" : {
-        "caps_lock_delay_milliseconds" : 0,
-        "keyboard_type" : "ansi"
-      }
-    },
-    {
-      "selected" : false,
-      "name" : "With Internal Keyboard",
-      "devices" : [
-
-      ],
-      "simple_modifications" : {
-        "caps_lock" : "f18"
-      },
-      "fn_function_keys" : {
-        "f12" : "volume_increment",
-        "f9" : "fastforward",
-        "f5" : "illumination_decrement",
-        "f10" : "mute",
-        "f1" : "display_brightness_decrement",
-        "f6" : "illumination_increment",
-        "f2" : "display_brightness_increment",
-        "f7" : "rewind",
-        "f11" : "volume_decrement",
-        "f3" : "mission_control",
-        "f8" : "play_or_pause",
-        "f4" : "launchpad"
-      },
-      "virtual_hid_keyboard" : {
-        "caps_lock_delay_milliseconds" : 0,
-        "keyboard_type" : "ansi"
-      }
-    }
-  ]
+    ]
 }
