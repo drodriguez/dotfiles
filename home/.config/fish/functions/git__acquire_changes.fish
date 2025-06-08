@@ -6,23 +6,22 @@ function git__acquire_changes
     set -l staged_lines
     set -l unstaged_lines
     set -l unknown_lines
-  # TODO: what if some format other than --short is here?
+    # TODO: what if some format other than --short is here?
     for line in (command git status --short $argv)
         set -l staged_state (string sub --length 1 $line)
         set -l unstaged_state (string sub --start 2 --length 1 $line)
-        
+
         switch $staged_state
-        case '\?' ' '
+        case ' ' '?'
         case '*'
-            set staged_lines $staged_lines $line
+            set -a staged_lines $line
         end
 
         switch $unstaged_state
-        case ' '
-        case '\?'
-            set unknown_lines $unknown_lines $line
+        case ' ' '?'
+            set -a unknown_lines $line
         case '*'
-            set unstaged_lines $unstaged_lines $line
+            set -a unstaged_lines $line
         end
     end
 
@@ -37,10 +36,10 @@ function git__acquire_changes
                  # filenames to think about. This code will break in the
                  # inexcusable case that the old filename contained ' -> '.
             for file in (string sub --start 4 $line | string split ' -> ')
-                set git__changes_filename  $git__changes_filename $file
+                set -a git__changes_filename $file
             end
         case '*'
-            set git__changes_filename $git__changes_filename (string sub --start 4 $line)
+            set -a git__changes_filename (string sub --start 4 $line)
         end
     end
 
