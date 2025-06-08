@@ -73,6 +73,7 @@ f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 
 -- ShiftIt: https://github.com/peterklijn/hammerspoon-shiftit
 hs.loadSpoon("ShiftIt")
+spoon.ShiftIt:setWindowCyclingSizes({ 50, 67 }, { 50 })
 shiftItBindings = {
   {'left',  spoon.ShiftIt.left},
   {'right', spoon.ShiftIt.right},
@@ -86,7 +87,7 @@ shiftItBindings = {
 }
 for _, keyFn in pairs(shiftItBindings) do
   k:bind({}, keyFn[1], nil, function()
-    keyFn[2]()
+    keyFn[2](spoon.ShiftIt)
     k.triggered = true
   end)
 end
