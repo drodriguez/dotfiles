@@ -18,7 +18,8 @@ function git__acquire_changes
         end
 
         switch $unstaged_state
-        case ' ' '?'
+        case ' '
+        case '?'
             set -a unknown_lines $line
         case '*'
             set -a unstaged_lines $line
