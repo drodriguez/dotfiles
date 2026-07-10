@@ -12,14 +12,14 @@ function git__acquire_changes
         set -l unstaged_state (string sub --start 2 --length 1 $line)
 
         switch $staged_state
-        case ' ' '?'
+        case ' ' '\?'
         case '*'
             set -a staged_lines $line
         end
 
         switch $unstaged_state
         case ' '
-        case '?'
+        case '\?'
             set -a unknown_lines $line
         case '*'
             set -a unstaged_lines $line
