@@ -1,9 +1,6 @@
 [submodule "home/.scm_breeze"]
 	path = home/.scm_breeze
 	url = https://github.com/ndbroadbent/scm_breeze.git
-[submodule "home/.vim/bundle/LanguageClient-neovim"]
-	path = home/.vim/bundle/LanguageClient-neovim
-	url = https://github.com/autozimu/LanguageClient-neovim.git
 [submodule "home/.vim/bundle/vim-cmake-syntax"]
 	path = home/.vim/bundle/vim-cmake-syntax
 	url = https://github.com/pboettch/vim-cmake-syntax.git
