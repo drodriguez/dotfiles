@@ -299,19 +299,6 @@ autocmd FileType gitcommit setlocal spell
 map <leader>g :Rg
 
 
-" LANGUAGECLIENT-NEOVIM
-let g:LanguageClient_serverCommands = {
-  \ 'cpp': ['~/.vim-clangd/llvm-build/bin/clangd']
-  \ }
-
-" Shift-K: See documentation
-noremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" gd: Go to definition
-noremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" F2: syntax aware rename
-noremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-
 " COLORCOLUMN
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -339,6 +326,9 @@ nnoremap <C-f> :NERDTreeFind<CR>
 " YANKSTACK
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+" vim-lsp
+let g:lsp_use_native_client=1
 
 " TODO: noshowmode (airline or lightline?)
 " TODO: check ttyfast over et+tmux

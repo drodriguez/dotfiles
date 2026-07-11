@@ -79,3 +79,9 @@
 [submodule "home/.local/share/omf"]
 	path = home/.local/share/omf
 	url = https://github.com/oh-my-fish/oh-my-fish.git
+[submodule "home/.vim/bundle/vim-lsp"]
+	path = home/.vim/bundle/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "home/.vim/bundle/vim-lsp-settings"]
+	path = home/.vim/bundle/vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings.git
